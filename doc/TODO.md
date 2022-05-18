@@ -17,10 +17,10 @@ TODO
 Changing over this forked git repository, from master to main.
 
 (do the first part on github.com, which then advises):
-
+```
  $ git branch -m master main
  $ git fetch origin
  $ git branch -u origin/main main
  $ git remote set-head origin -a
-
+```
 END.
