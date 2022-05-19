@@ -1,3 +1,4 @@
+// +TeensyDuino 3.6 tests done 19 May 2022
 // -----------------------------------------------------------------------------
 // Altair 8800 Simulator
 // Copyright (C) 2017 David Hansel
@@ -17,6 +18,21 @@
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 // -----------------------------------------------------------------------------
 
+// using this library:
+# if 0
+ $  cat /some/path/to/Arduino/libraries/SdFat/library.properties
+  1 name=SdFat
+  2 version=2.0.1
+  3 license=MIT
+  4 author=Bill Greiman <fat16lib@sbcglobal.net>
+  5 maintainer=Bill Greiman <fat16lib@sbcglobal.net>
+  6 sentence=FAT16/FAT32/exFAT file system.
+  7 paragraph=FAT16/FAT32/exFAT file system.
+  8 category=Data Storage
+  9 url=https://github.com/greiman/SdFat
+ 10 repository=https://github.com/greiman/SdFat.git
+ 11 architectures=*
+#endif
 
 #include "Altair8800.h"
 #include "config.h"

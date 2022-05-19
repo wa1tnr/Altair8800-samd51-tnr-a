@@ -2,6 +2,21 @@
 // Altair 8800 Simulator
 // Copyright (C) 2017 David Hansel
 // Copyright (C) 2020 Dirk Herrendoerfer
+// using this library:
+# if 0
+ $  cat /some/path/to/Arduino/libraries/SdFat/library.properties
+  1 name=SdFat
+  2 version=2.0.1
+  3 license=MIT
+  4 author=Bill Greiman <fat16lib@sbcglobal.net>
+  5 maintainer=Bill Greiman <fat16lib@sbcglobal.net>
+  6 sentence=FAT16/FAT32/exFAT file system.
+  7 paragraph=FAT16/FAT32/exFAT file system.
+  8 category=Data Storage
+  9 url=https://github.com/greiman/SdFat
+ 10 repository=https://github.com/greiman/SdFat.git
+ 11 architectures=*
+#endif
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -81,7 +96,9 @@ int FreeRam() {
   return &top - reinterpret_cast<char*>(sbrk(0));
 }
 
-static SdFatSdio SD;
+// static SdFatSdio SD;
+// 37:static SdFat SD;
+static SdFat SD;
 
 #define min(x, y) ((x)<(y) ? (x) : (y))
 #define max(x, y) ((x)>(y) ? (x) : (y))
