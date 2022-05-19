@@ -14,7 +14,7 @@ endif
 OBJECTS=$(OBJ)/cpucore.o $(OBJ)/cpucore_z80.o $(OBJ)/cpucore_i8080.o $(OBJ)/mem.o $(OBJ)/io.o $(OBJ)/serial.o $(OBJ)/profile.o $(OBJ)/breakpoint.o $(OBJ)/numsys.o $(OBJ)/filesys.o $(OBJ)/drive.o $(OBJ)/cdrive.o $(OBJ)/tdrive.o $(OBJ)/disassembler.o $(OBJ)/disassembler_z80.o $(OBJ)/disassembler_i8080.o $(OBJ)/prog_basic.o $(OBJ)/prog_ps2.o $(OBJ)/prog_examples.o $(OBJ)/prog_tools.o $(OBJ)/prog_games.o $(OBJ)/prog_dazzler.o $(OBJ)/host_pc.o $(OBJ)/config.o $(OBJ)/timer.o $(OBJ)/prog.o $(OBJ)/printer.o $(OBJ)/hdsk.o $(OBJ)/image.o $(OBJ)/switch_serial.o $(OBJ)/sdmanager.o $(OBJ)/dazzler.o $(OBJ)/vdm1.o $(OBJ)/XModem.o
 
 Altair8800$(EXT): $(OBJ) $(OBJECTS) $(OBJ)/Altair8800.o $(OBJ)/Arduino.o $(OBJ)/Print.o
-	g++ $(OBJECTS) $(OBJ)/Altair8800.o $(OBJ)/Arduino.o $(OBJ)/Print.o $(LFLAGS) -o Altair8800$(EXT)
+	g++ $(OBJECTS) $(OBJ)/Altair8800.o $(OBJ)/Arduino.o $(OBJ)/Print.o $(LFLAGS) -o Altair8800-samd51-tnr-a$(EXT)
 
 $(OBJ):
 	mkdir $(OBJ)
@@ -22,8 +22,8 @@ $(OBJ):
 $(OBJECTS): $(OBJ)/%.o: %.cpp
 	g++ $(CFLAGS) -c $< -I Arduino -o $@
 
-$(OBJ)/Altair8800.o: Altair8800.ino
-	g++ $(CFLAGS) -c -o $(OBJ)/Altair8800.o -I Arduino -x c++ Altair8800.ino
+$(OBJ)/Altair8800.o: Altair8800-samd51-tnr-a.ino
+	g++ $(CFLAGS) -c -o $(OBJ)/Altair8800.o -I Arduino -x c++ Altair8800-samd51-tnr-a.ino
 
 $(OBJ)/Arduino.o: Arduino/Arduino.cpp
 	g++ $(CFLAGS) -c -o $(OBJ)/Arduino.o -I Arduino Arduino/Arduino.cpp
@@ -32,11 +32,14 @@ $(OBJ)/Print.o: Arduino/Print.cpp
 	g++ $(CFLAGS) -c -o $(OBJ)/Print.o -I Arduino Arduino/Print.cpp
 
 clean:
-	rm -rf $(OBJ) Altair8800.exe
+	@rm -rf $(OBJ) Altair8800-samd51-tnr-a.exe
+	@rm -rf $(OBJ) Altair8800-samd51-tnr-a
 
+run:
+	@./Altair8800-samd51-tnr-a
 deps:
 	@echo
-	@gcc -MM -x c++ Altair8800.ino *.cpp Arduino/Arduino.cpp -I . -I Arduino | sed "s/.*\:/\$$(OBJ)\/&/"
+	@gcc -MM -x c++ Altair8800-samd51-tnr-a.ino *.cpp Arduino/Arduino.cpp -I . -I Arduino | sed "s/.*\:/\$$(OBJ)\/&/"
 	@echo
 
 
@@ -45,7 +48,7 @@ deps:
 # --------------------------------------------------------------------------------------------------
 
 
-$(OBJ)/Altair8800.o: Altair8800.ino Altair8800.h Arduino/Arduino.h \
+$(OBJ)/Altair8800.o: Altair8800-samd51-tnr-a.ino Altair8800.h Arduino/Arduino.h \
  Arduino/inttypes.h Arduino/Print.h config.h cpucore.h host.h host_pc.h \
  switch_serial.h mem.h prog_basic.h breakpoint.h dazzler.h vdm1.h \
  serial.h printer.h profile.h disassembler.h numsys.h filesys.h drive.h \
