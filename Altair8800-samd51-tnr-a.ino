@@ -1,4 +1,8 @@
 // +TeensyDuino 3.6 tests done 19 May 2022
+#define REVISION_TNR "Altair8800-samd51-tnr-a.00a-"
+//
+// TESTING: /some/path/to/test/rr/Altair8800
+//
 // -----------------------------------------------------------------------------
 // Altair 8800 Simulator
 // Copyright (C) 2017 David Hansel
@@ -267,7 +271,7 @@ void process_inputs()
           config_edit();
           if( config_serial_panel_enabled() ) 
             { 
-              Serial.print(F("\033[14B")); 
+              Serial.print(F("\033[14B"));
               print_panel_serial(true); 
             }
 
@@ -1105,8 +1109,12 @@ void print_panel_serial(bool force)
 
   if( force || p_cswitch != cswitch || p_dswitch != dswitch || p_abus != abus || p_dbus != dbus || p_status != status )
     {
+#if 0
       Serial.print(F("\033[s\033[0;0HINTE PROT MEMR INP M1 OUT HLTA STACK WO INT  D7  D6  D5  D4  D3  D2  D1  D0\r\n"));
 
+      Serial.print(F(           "\r\nINTE PROT MEMR INP M1 OUT HLTA STACK WO INT  D7  D6  D5  D4  D3  D2  D1  D0\r\n"));
+      Serial.print(F(           "\r\nINTE PROT MEMR INP M1 OUT HLTA STACK WO INT  D7  D6  D5  D4  D3  D2  D1  D0\r\n"));
+#endif
       if( status & ST_INTE  ) Serial.print(F(" *  "));    else Serial.print(F(" .  "));
       if( status & ST_PROT  ) Serial.print(F("  *  "));   else Serial.print(F("  .  "));
       if( status & ST_MEMR  ) Serial.print(F("  *  "));   else Serial.print(F("  .  "));
@@ -1173,7 +1181,11 @@ void print_panel_serial(bool force)
       if( cswitch & BIT(SW_PROTECT) ) Serial.print(F("      ^  "));  else if( cswitch & BIT(SW_UNPROTECT) ) Serial.print(F("      v  ")); else Serial.print(F("      o  "));
       if( cswitch & BIT(SW_AUX1UP) )  Serial.print(F("     ^  "));   else if( cswitch & BIT(SW_AUX1DOWN) )  Serial.print(F("     v  "));  else Serial.print(F("     o  "));
       if( cswitch & BIT(SW_AUX2UP) )  Serial.print(F("  ^  "));      else if( cswitch & BIT(SW_AUX2DOWN) )  Serial.print(F("  v  "));     else Serial.print(F("  o  "));
+#if 0
       Serial.print(F("\r\n            Run         E.Next   D.Next    CLR   Unprotect\r\n\033[K\n\033[K\n\033[K\n\033[K\n\033[K\033[u"));
+      Serial.print(F(                                                                  "\033[K\n\033[K\n\033[K\n\033[K\n\033[K\033[u"));
+      Serial.print(F("\r\n            Run         E.Next   D.Next    CLR   Unprotect\r\n\r\n"));
+#endif
       p_cswitch = cswitch;
       p_dswitch = dswitch;
       p_abus = abus;
@@ -1701,7 +1713,14 @@ void setup()
   host_set_status_led_WAIT();
   reset(false);
 
-  if( config_serial_panel_enabled() ) Serial.print(F("\033[2J\033[14B\r\n"));
+//if( config_serial_panel_enabled() ) Serial.print(F("\033[2J\033[14B\r\n"));
+  if( config_serial_panel_enabled() ) {
+    for (int count = 12; count > 0; count--) {
+      Serial.print(F("\r\n"));
+    }
+    Serial.print(F(REVISION_TNR));
+    Serial.print(F("\r\n\r\n   TOP:  u) !) a-f0-9) ctrl+c twice, rapidly\r\n"));
+  }
 
   uint16_t a = mem_get_rom_autostart_address();
   if( a!=0xFFFF )
