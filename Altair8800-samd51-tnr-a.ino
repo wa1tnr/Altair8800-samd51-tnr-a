@@ -1111,10 +1111,8 @@ void print_panel_serial(bool force)
     {
 #if 0
       Serial.print(F("\033[s\033[0;0HINTE PROT MEMR INP M1 OUT HLTA STACK WO INT  D7  D6  D5  D4  D3  D2  D1  D0\r\n"));
-
-      Serial.print(F(           "\r\nINTE PROT MEMR INP M1 OUT HLTA STACK WO INT  D7  D6  D5  D4  D3  D2  D1  D0\r\n"));
-      Serial.print(F(           "\r\nINTE PROT MEMR INP M1 OUT HLTA STACK WO INT  D7  D6  D5  D4  D3  D2  D1  D0\r\n"));
 #endif
+      Serial.print(F(           "\r\nINTE PROT MEMR INP M1 OUT HLTA STACK WO INT  D7  D6  D5  D4  D3  D2  D1  D0\r\n"));
       if( status & ST_INTE  ) Serial.print(F(" *  "));    else Serial.print(F(" .  "));
       if( status & ST_PROT  ) Serial.print(F("  *  "));   else Serial.print(F("  .  "));
       if( status & ST_MEMR  ) Serial.print(F("  *  "));   else Serial.print(F("  .  "));
@@ -1183,9 +1181,8 @@ void print_panel_serial(bool force)
       if( cswitch & BIT(SW_AUX2UP) )  Serial.print(F("  ^  "));      else if( cswitch & BIT(SW_AUX2DOWN) )  Serial.print(F("  v  "));     else Serial.print(F("  o  "));
 #if 0
       Serial.print(F("\r\n            Run         E.Next   D.Next    CLR   Unprotect\r\n\033[K\n\033[K\n\033[K\n\033[K\n\033[K\033[u"));
-      Serial.print(F(                                                                  "\033[K\n\033[K\n\033[K\n\033[K\n\033[K\033[u"));
-      Serial.print(F("\r\n            Run         E.Next   D.Next    CLR   Unprotect\r\n\r\n"));
 #endif
+      Serial.print(F("\r\n            Run         E.Next   D.Next    CLR   Unprotect\r\n\r\n"));
       p_cswitch = cswitch;
       p_dswitch = dswitch;
       p_abus = abus;
