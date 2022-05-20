@@ -32,7 +32,12 @@ $(OBJ)/Print.o: Arduino/Print.cpp
 	g++ $(CFLAGS) -c -o $(OBJ)/Print.o -I Arduino Arduino/Print.cpp
 
 clean:
-	rm -rf $(OBJ) Altair8800.exe
+	@rm -rf $(OBJ) Altair8800-samd51-tnr-a.exe
+	@rm -rf $(OBJ) Altair8800-samd51-tnr-a
+
+run:
+	@./Altair8800
+	# @./Altair8800-samd51-tnr-a
 
 deps:
 	@echo
