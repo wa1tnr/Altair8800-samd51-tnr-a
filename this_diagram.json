@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "wa1tnr-switch_crafting Fri 17 Jun 14:19:55 UTC 2022 offline",
+  "author": "wa1tnr-switch_crafting Fri 17 Jun 14:32:39 UTC 2022 offline DEPOSIT wiring",
   "editor": "wokwi",
   "parts": [
     { "type": "wokwi-arduino-mega", "id": "mega", "top": 2650, "left": 550, "attrs": {} },
@@ -156,6 +156,12 @@
     [ "mega:14", "sw17:3", "blue", [ "v0", "*", "h30" ] ],
     [ "sw25:2",  "sw17:2", "green", [ "v0", "*", "h-72", "v27", "h22" ] ],
     [ "sw25:3", "mega:GND.1", "black", [ "v0", "*", "h235" ] ],
+
+    [ "mega:9", "sw20:1", "white", [ "v0", "*", "h15" ] ],
+    [ "mega:8", "sw20:3", "blue", [ "v0", "*", "h30" ] ],
+    [ "sw28:2", "sw20:2", "green", [ "v0", "*", "h-72", "v27", "h22" ] ],
+    [ "sw28:3", "mega:GND.1", "black", [ "v0", "*", "h1", "v1", "h-232" ] ],
+
     [ "mega:7", "sw21:1", "white", [ "v0", "*", "h15" ] ],
     [ "mega:6", "sw21:3", "blue", [ "v0", "*", "h30" ] ],
     [ "sw29:2", "sw21:2", "green", [ "v0", "*", "h-72", "v27", "h22" ] ],
