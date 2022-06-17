@@ -27,12 +27,14 @@
   4 author=Bill Greiman <fat16lib@sbcglobal.net>
   5 maintainer=Bill Greiman <fat16lib@sbcglobal.net>
   6 sentence=FAT16/FAT32/exFAT file system.
-  7 paragraph=FAT16/FAT32/exFAT file system.
+  7 paragraph=FAT16/FAT32/exFAT file system.gghiijj
   8 category=Data Storage
   9 url=https://github.com/greiman/SdFat
  10 repository=https://github.com/greiman/SdFat.git
  11 architectures=*
 #endif
+
+extern void kludge_aa(void); // tnr-kludges-aa.cpp  20 May 2022 12:32 UTC
 
 #include "Altair8800.h"
 #include "config.h"
@@ -1630,6 +1632,10 @@ void setup()
   drive_get_image_filename(0x99, true);
 
   Serial.begin(115200);
+  Serial.write('.'); // tnr kludge 19 May 20:56z
+  Serial.println("LINE 1634 main .ino file");
+  kludge_aa(); // towards animating front panel LEDs for testing.  Maybe. 20 May 12:35z
+
 
   timer_setup();
   mem_setup();

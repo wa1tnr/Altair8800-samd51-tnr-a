@@ -23,7 +23,7 @@
 
 #define HOST_PERFORMANCE_FACTOR 0.25
 
-#define HOST_NUM_SERIAL_PORTS   1
+#define HOST_NUM_SERIAL_PORTS   1 // exactly one required for wokwi sim but 3 wasn't rejected.
 
 #define PROF_DISPLAY_INTERVAL 100000
 
